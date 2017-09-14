@@ -6,10 +6,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 const Root = ({store}) => (
     <Provider store={store}>
         <Router>
-            <App>
-                <Route path='/(:filter)'></Route>
-
-            </App>
+            <Route path='/:filter?' component={App}></Route>
         </Router>
     </Provider>
 )

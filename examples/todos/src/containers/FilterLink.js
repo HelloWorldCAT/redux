@@ -9,7 +9,7 @@ const FilterLink = ({filter, children}) => (
               color: 'black'
             }}
             exact
-            to={filter === 'all' ? '/' : '/' + filter}
+            to={filter === 'all' ? '/' : `/${filter}`}
           >
             {children}
           </NavLink>
