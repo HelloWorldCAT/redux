@@ -13,23 +13,25 @@ export const toggleTodo = (id) => ({
   id
 });
 
-const receiveTodo = (todos, filter) => ({
-  type: 'RECEIVE_TODOS',
-  todos,
-  filter
-});
-
-const requestTodos = (filter) =>({
-  type: 'REQUEST_TODOS',
-  filter
-});
-
 export const fetchTodos = (filter) => (dispatch, getState) => {
   if(getIsFetchingData(getState(), filter)){
     return Promise.resolve();
   }
-  dispatch(requestTodos(filter));
+  dispatch({
+    type: 'FETCH_TODO_REQUEST',
+    filter
+  });
   api.fetchTodos(filter).then(
-      response => dispatch(receiveTodo(response, filter))
+    todos => dispatch({
+      type: 'FETCH_TODO_SUCCESS',
+      todos,
+      filter
+    })
+    ,
+    error => dispatch({
+      type: 'FETCH_TODO_FAIL',
+      filter,
+      message: error.message || 'something went wrong.'
+    })
   );
 }

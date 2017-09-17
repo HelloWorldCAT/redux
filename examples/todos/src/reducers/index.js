@@ -25,3 +25,7 @@ export const getVisibleTodos = (state, filter) => {
 export const getIsFetchingData = (state, filter) => {
   return fromCreateIds.getIsFetching(state.idsByFilter[filter]);
 }
+
+export const getErrorMessage = (state, filter) => {
+  return fromCreateIds.getErrorMessage(state.idsByFilter[filter]);
+}
