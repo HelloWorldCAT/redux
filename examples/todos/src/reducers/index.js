@@ -14,7 +14,7 @@ const todos = combineReducers({
   idsByFilter
 });
 
-export default todos
+export default todos;
 
 
 export const getVisibleTodos = (state, filter) => {
