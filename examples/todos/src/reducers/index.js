@@ -9,11 +9,19 @@ const idsByFilter = combineReducers({
   completed:createIds('completed')
 });
 
-const todos = combineReducers({byId, idsByFilter});
+const todos = combineReducers({
+  byId, 
+  idsByFilter
+});
+
 export default todos
 
 
 export const getVisibleTodos = (state, filter) => {
   const ids = fromCreateIds.getIds(state.idsByFilter[filter]);
   return ids.map(id => fromByIds.getTodo(state.byId, id));
+}
+
+export const getIsFetchingData = (state, filter) => {
+  return fromCreateIds.getIsFetching(state.idsByFilter[filter]);
 }
