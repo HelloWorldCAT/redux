@@ -11,8 +11,10 @@ class VisibleTodoList extends Component {
     this.fetchData()
   }
 
-  componentDidUpdate(){
-    this.fetchData();
+  componentDidUpdate(prevProps){
+    if (this.props.filter !== prevProps.filter){
+      this.fetchData();
+    }
   }
   
   render() {

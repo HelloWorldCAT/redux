@@ -12,12 +12,13 @@ export const toggleTodo = (id) => ({
   id
 });
 
-const receiveTodo = (todos) => ({
+const receiveTodo = (todos, filter) => ({
   type: 'RECEIVE_TODOS',
-  todos
+  todos,
+  filter
 });
 
 export const fetchTodos = (filter) => 
   api.fetchTodos(filter).then(
-      response => receiveTodo(response)
+      response => receiveTodo(response, filter)
     );
