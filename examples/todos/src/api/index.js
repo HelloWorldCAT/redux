@@ -24,9 +24,9 @@ const delay = (ms) =>
 
 export const fetchTodos = (filter) => 
     delay(1000).then(data => {
-        if(Math.random()>0.5){
-            throw Error(`fetch ${filter} fail`);
-        }
+        // if(Math.random()>0.5){
+        //     throw Error(`fetch ${filter} fail`);
+        // }
         switch(filter){
             case 'all':
                 return fakeDatabase.todos;
@@ -38,3 +38,22 @@ export const fetchTodos = (filter) =>
                 throw new Error(`Unknow filter: ${filter}`);
         }
     });
+
+
+export const addTodos = (text) => 
+    delay(1000).then(()=>{
+        const todo = {
+            id: v4(),
+            text,
+            completed: false
+        };
+        fakeDatabase.todos.push(todo);
+        return todo;
+    });
+
+export const toggleTodo = (id) => 
+    delay(1000).then(()=> {
+        const todo = fakeDatabase.todos.find(todo=>todo.id === id);
+        todo.completed = !todo.completed;
+        return todo;
+    })
